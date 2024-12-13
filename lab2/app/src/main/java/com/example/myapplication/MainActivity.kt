@@ -23,13 +23,15 @@ class MainActivity : AppCompatActivity() {
         var sum: TextView = findViewById(R.id.sum1)
         var poslslag: TextView = findViewById(R.id.poslslag1)
         var iterations: TextView = findViewById(R.id.kolvoPovtor1)
-        var persons_date: TextView = findViewById(R.id.person_date)
-        val dates = persons_date.text.toString().toDoubleOrNull() ?:0.0
-        var calculate: Button = findViewById(R.id.calc)
+
+        val persons_date: TextView = findViewById(R.id.person_date)
+        var dates: Double
+
+        val calculate: Button = findViewById(R.id.calc)
 
 
-//        val dateString = persons_date.text.toString()
-//        val date = dateString.toDoubleOrNull()
+        //val dateString = persons_date.text.toString()
+        //val date = dateString.toDoubleOrNull()
 //
 //        if (date == null) {
 //            Toast.makeText(this, "Введите корректное число", Toast.LENGTH_SHORT).show()
@@ -38,12 +40,19 @@ class MainActivity : AppCompatActivity() {
 
 
         calculate.setOnClickListener {
+            dates = persons_date.text.toString().toDoubleOrNull() ?:0.0
+
+            sum.text = ""
+            poslslag.text = ""
+            iterations.text = ""
+
             Toast.makeText(this, "Кнопка нажата", Toast.LENGTH_SHORT).show()
 
             var sum1 = 1.0
             var poslslag1: Double
             var iteration = 0
             var n = 2
+//            var dates = 4
 
             do {
                 poslslag1 = 1.0 / (n*n)
@@ -55,16 +64,16 @@ class MainActivity : AppCompatActivity() {
 //                    Toast.makeText(this, "Цикл слишком долгий", Toast.LENGTH_SHORT).show()
 //
 //                }
-                Log.d("DEBUG", "Сумма: $sum1, Последнее слагаемое: $poslslag1, Количество: $iteration")
+                //Log.d("DEBUG", "Сумма: $sum1, Последнее слагаемое: $poslslag1, Количество: $iteration")
 
-            } while (Math.abs(poslslag1) > dates)
+            } while (sum1 < dates)
 
             sum.text = "Сумма: $sum1"
             poslslag.text = "Последнее слагаемое: $poslslag1"
             iterations.text = "Количество повторений цикла: $iteration"
 
             //отладка
-            Log.d("DEBUG", "Сумма: $sum1, Последнее слагаемое: $poslslag1, Количество: $iteration")
+            //Log.d("DEBUG", "Сумма: $sum1, Последнее слагаемое: $poslslag1, Количество: $iteration")
         }
     }
 }
