@@ -1,4 +1,4 @@
-package com.example.lab4
+package com.example.quzletlab4
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
