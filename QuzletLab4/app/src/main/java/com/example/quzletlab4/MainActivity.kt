@@ -5,6 +5,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import android.widget.Button;
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,5 +17,28 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+
+        val trueButton: Button = findViewById(R.id.true_button)
+        val falseButton: Button = findViewById(R.id.false_button)
+
+
+        trueButton.setOnClickListener {
+            Toast.makeText(
+                this,
+                R.string.correct_toast,
+                Toast.LENGTH_SHORT)
+                .show()
+        }
+
+        falseButton.setOnClickListener {
+            Toast.makeText(
+                this,
+                R.string.incorrect_toast,
+                Toast.LENGTH_SHORT)
+                .show()
+        }
     }
+
+
 }
