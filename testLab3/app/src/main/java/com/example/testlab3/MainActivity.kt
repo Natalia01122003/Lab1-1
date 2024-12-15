@@ -32,6 +32,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun countLatinLetters(input: String): Int {
-        return input.count { it.isLetter() && it.toChar().isLetter() && (it in 'A'..'Z' || it in 'a'..'z') }
-    }
+        return input.count { it in 'A'..'Z' || it in 'a'..'z' }
+        }
 }
