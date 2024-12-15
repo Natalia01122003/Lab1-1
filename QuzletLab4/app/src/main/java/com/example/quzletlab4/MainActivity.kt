@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.widget.Button;
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,24 +22,49 @@ class MainActivity : AppCompatActivity() {
 
         val trueButton: Button = findViewById(R.id.true_button)
         val falseButton: Button = findViewById(R.id.false_button)
+        val nextButton: Button = findViewById(R.id.next_button)
+        var questionTextView: TextView = findViewById(R.id.question_text_view)
+
+        val questionBank = listOf(
+            Question(R.string.question_australia, true),
+            Question(R.string.question_oceans, true),
+            Question(R.string.question_mideast, false),
+            Question(R.string.question_africa, false),
+            Question(R.string.question_americas, true),
+            Question(R.string.question_asia, true)
+        )
+
+        var currentIndex = 0
 
 
         trueButton.setOnClickListener {
-            Toast.makeText(
-                this,
-                R.string.correct_toast,
-                Toast.LENGTH_SHORT)
-                .show()
+            checkAnswer(true)
         }
 
         falseButton.setOnClickListener {
-            Toast.makeText(
-                this,
-                R.string.incorrect_toast,
-                Toast.LENGTH_SHORT)
-                .show()
+            checkAnswer(false)
         }
     }
 
+    nextButton.setOnClickListener
+    {
+        currentIndex = (currentIndex + 1) % questionBank.size
+        updateQuestion()
+    }
 
+    updateQuestion()
+
+    private fun updateQuestion() {
+        val questionTextResId =
+            questionBank[currentIndex].textResIdquestionTextView.setText(questionTextRe sId)
+    }
+
+    private fun checkAnswer(userAnswer: Boolean) {
+        val correctAnswer = questionBank[currentIndex].answer
+        val messageResId = if (userAnswer == correctAnswer) { R.string.correct_toast
+        } else { R.string.incorrect_toast
+        }
+
+        Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show()
+    }
 }
